@@ -1,0 +1,41 @@
+name: al_bukhari
+description: "Al Bukhari: the Quran in Arabic and English, verse-repeat memorisation, Qibla and prayer times."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+  rust_lib_al_bukhari:
+    path: rust_builder
+  flutter_rust_bridge: 2.13.0
+  just_audio: ^0.10.6
+  geolocator: ^14.1.2
+  flutter_compass: ^0.8.1
+  shared_preferences: ^2.5.6
+  url_launcher: ^6.3.3
+  scrollable_positioned_list: ^0.3.8
+  timezone: ^0.11.2
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/quran/quran.json.gz
+    - assets/legal/privacy.md
+    - assets/places/cities.tsv.gz
+  fonts:
+    - family: AmiriQuran
+      fonts:
+        - asset: assets/fonts/AmiriQuran-Regular.ttf
+    - family: Newsreader
+      fonts:
+        - asset: assets/fonts/Newsreader.ttf
+        - asset: assets/fonts/Newsreader-Italic.ttf
+          style: italic
+    - family: InstrumentSans
+      fonts:
+        - asset: assets/fonts/InstrumentSans.ttf

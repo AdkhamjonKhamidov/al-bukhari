@@ -1,0 +1,8 @@
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - rust/**
+    - rust_builder/**   # generated build glue
+    - lib/src/rust/**   # generated bindings

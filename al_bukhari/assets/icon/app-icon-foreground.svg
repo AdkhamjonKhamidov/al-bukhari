@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Al Bukhari app icon: full-bleed square, no transparency (store requirement) -->
+  <!-- Palette: #5D866C green · #C2A68C brick · #E6D8C3 sand · #F5F5F0 ivory -->
+  <defs>
+    <clipPath id="shaft">
+      <polygon points="196,436 316,436 294,200 218,200"/>
+    </clipPath>
+  </defs>
+  
+
+  <g transform="translate(-35.6 -35.6) scale(2.139)">
+    <polygon points="196,436 316,436 294,200 218,200" fill="#C2A68C"/>
+    <g clip-path="url(#shaft)" fill="#E6D8C3">
+      <rect x="180" y="404" width="160" height="6"/>
+      <rect x="180" y="364" width="160" height="6"/>
+      <rect x="180" y="322" width="160" height="6"/>
+      <rect x="180" y="282" width="160" height="6"/>
+      <rect x="180" y="244" width="160" height="6"/>
+    </g>
+    <rect x="182" y="436" width="148" height="12" rx="2" fill="#E6D8C3"/>
+    <path fill="#E6D8C3" d="M206 180 H306 L294 202
+      A6.33 6.33 0 0 1 281.33 202 A6.33 6.33 0 0 1 268.67 202
+      A6.33 6.33 0 0 1 256 202 A6.33 6.33 0 0 1 243.33 202
+      A6.33 6.33 0 0 1 230.67 202 A6.33 6.33 0 0 1 218 202 Z"/>
+    <rect x="212" y="132" width="88" height="48" fill="#C2A68C"/>
+    <g fill="#5D866C">
+      <path d="M224 174 V154 A8 8 0 0 1 240 154 V174 Z"/>
+      <path d="M248 174 V154 A8 8 0 0 1 264 154 V174 Z"/>
+      <path d="M272 174 V154 A8 8 0 0 1 288 154 V174 Z"/>
+    </g>
+    <rect x="204" y="122" width="104" height="10" rx="2" fill="#E6D8C3"/>
+    <path d="M228 122 Q228 96 256 90 Q284 96 284 122 Z" fill="#C2A68C"/>
+    <rect x="254" y="72" width="4" height="20" fill="#E6D8C3"/>
+    <circle cx="256" cy="70" r="5" fill="#F5F5F0"/>
+  </g>
+</svg>
