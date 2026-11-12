@@ -39,6 +39,11 @@ class _Compass extends StatefulWidget {
 
 class _CompassState extends State<_Compass> {
   StreamSubscription<double?>? _sub;
+  StreamSubscription<void>? _fix;
+
+  /// iOS sends a negative heading when it cannot find true north, which
+  /// needs location permission there.
+  bool _needsLocation = false;
   late double _bearing;
   late double _distanceKm;
   late double _correction;
@@ -59,10 +64,23 @@ class _CompassState extends State<_Compass> {
     _distanceKm = s.core.distanceToKaabaKm(widget.place);
     _correction = s.core.headingCorrection(widget.place, s.now());
     _sub = s.heading().listen(_onHeading);
+    _fix = s.trueNorthFix().listen((_) {});
+  }
+
+  Future<void> _allow() async {
+    final s = AppScope.of(context);
+    if (!await s.allowLocation() || !mounted) return;
+    await _fix?.cancel();
+    _fix = s.trueNorthFix().listen((_) {});
   }
 
   void _onHeading(double? raw) {
     if (!mounted || raw == null) return;
+    if (raw < 0) {
+      if (!_needsLocation) setState(() => _needsLocation = true);
+      return;
+    }
+    _needsLocation = false;
     final heading = (raw + _correction) % 360;
     final step = ((heading - (_heading ?? 0) + 540) % 360) - 180;
     final facing = _offBy(heading).abs() <= 3;
@@ -80,6 +98,7 @@ class _CompassState extends State<_Compass> {
   @override
   void dispose() {
     unawaited(_sub?.cancel());
+    unawaited(_fix?.cancel());
     super.dispose();
   }
 
@@ -102,7 +121,9 @@ class _CompassState extends State<_Compass> {
                     bearing: _bearing,
                     turns: _turns,
                     facing: facing,
-                    centre: _Readout(turn: turn, facing: facing),
+                    centre: _needsLocation
+                        ? _AllowCompass(onAllow: _allow)
+                        : _Readout(turn: turn, facing: facing),
                   ),
                 ),
               ),
@@ -144,6 +165,27 @@ class _PlaceBar extends StatelessWidget {
       ),
     );
   }
+}
+
+class _AllowCompass extends StatelessWidget {
+  const _AllowCompass({required this.onAllow});
+  final VoidCallback onAllow;
+
+  @override
+  Widget build(BuildContext context) => Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      const Icon(Icons.explore_outlined, size: 40, color: Palette.sand),
+      const SizedBox(height: 6),
+      Text('Compass needs location', style: T.label.copyWith(color: Palette.sand, fontSize: 16)),
+      const SizedBox(height: 12),
+      FilledButton(
+        style: FilledButton.styleFrom(backgroundColor: Palette.sand, foregroundColor: Palette.ink),
+        onPressed: onAllow,
+        child: const Text('Allow'),
+      ),
+    ],
+  );
 }
 
 class _Readout extends StatelessWidget {

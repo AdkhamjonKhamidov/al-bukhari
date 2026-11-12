@@ -1,3 +1,4 @@
+import 'package:audio_session/audio_session.dart';
 import 'package:flutter/material.dart';
 
 import 'app.dart';
@@ -13,6 +14,10 @@ import 'theme/theme.dart';
 
 Future<Services> startServices() async {
   await RustLib.init();
+  // Recitation is spoken audio: it plays with the silent switch on (iOS)
+  // and pauses other audio while it plays.
+  final audio = await AudioSession.instance;
+  await audio.configure(const AudioSessionConfiguration.speech());
   initTimeZones();
   final (quran, settings) = await (Quran.load(), Settings.load()).wait;
   return Services(

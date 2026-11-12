@@ -6,3 +6,6 @@ analyzer:
     - rust/**
     - rust_builder/**   # generated build glue
     - lib/src/rust/**   # generated bindings
+
+formatter:
+  page_width: 100

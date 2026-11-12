@@ -96,6 +96,28 @@ Future<LocateResult> locateDevice() async {
 Stream<double?> deviceHeading() =>
     (FlutterCompass.events ?? const Stream<CompassEvent>.empty()).map((e) => e.heading);
 
+/// Asks for location permission only (no position is read or kept).
+Future<bool> allowDeviceLocation() async {
+  try {
+    var p = await Geolocator.checkPermission();
+    if (p == LocationPermission.denied) p = await Geolocator.requestPermission();
+    return p == LocationPermission.whileInUse || p == LocationPermission.always;
+  } catch (_) {
+    return false;
+  }
+}
+
+/// iOS reports true north only while it knows roughly where the phone is.
+/// While the Qibla screen is open this keeps a coarse location fix running;
+/// the positions are ignored, never stored and never sent. Elsewhere, and
+/// without permission, it does nothing.
+Stream<void> deviceTrueNorthFix() {
+  if (!Platform.isIOS) return const Stream<void>.empty();
+  return Geolocator.getPositionStream(
+    locationSettings: const LocationSettings(accuracy: LocationAccuracy.low, distanceFilter: 5000),
+  ).map<void>((_) {}).handleError((Object _) {});
+}
+
 /// Everything screens depend on, in one place.
 class Services {
   Services({
@@ -105,6 +127,8 @@ class Services {
     this.core = const Core(),
     this.locate = locateDevice,
     this.heading = deviceHeading,
+    this.allowLocation = allowDeviceLocation,
+    this.trueNorthFix = deviceTrueNorthFix,
     this.openSettings = Geolocator.openAppSettings,
     this.loadPlaces = Places.load,
     DateTime Function()? now,
@@ -116,6 +140,8 @@ class Services {
   final VersePlayer player;
   final Future<LocateResult> Function() locate;
   final Stream<double?> Function() heading;
+  final Future<bool> Function() allowLocation;
+  final Stream<void> Function() trueNorthFix;
   final Future<bool> Function() openSettings;
   final DateTime Function() now;
   final Future<Places> Function() loadPlaces;
