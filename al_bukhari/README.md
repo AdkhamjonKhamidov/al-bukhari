@@ -82,7 +82,24 @@ node tool/build_data.mjs
 
 Rebuilds the Quran text and city list from their public sources.
 
-## iOS
+## iOS (no Mac needed)
 
-The iOS project is kept as generated but has never been built or tested;
-that needs a Mac with Xcode 26.
+The same code builds for iPhone on a GitHub-hosted Mac. It has been run
+end to end on the iPhone simulator; screenshots are in
+`docs/screenshots/ios/`.
+
+**Get a build:** every push that changes the app builds it automatically.
+To build by hand: GitHub → **Actions** → **iOS** → **Run workflow**. When it
+finishes (about 15 minutes), download **AlBukhari-ios-simulator** from the
+run page.
+
+**Try it in your browser:** upload that zip at appetize.io (free account).
+It runs the real app on a virtual iPhone. The simulator has no compass, so
+the Qibla screen shows the direction without turning.
+
+**On your iPhone:** Apple only lets you install apps through TestFlight or
+the App Store, which needs an Apple Developer account ($99 a year). With
+one, the build can be signed and sent to TestFlight by the same workflow.
+
+Apple's App Store also requires the build to come from Xcode 26 or later,
+which the GitHub Mac provides.

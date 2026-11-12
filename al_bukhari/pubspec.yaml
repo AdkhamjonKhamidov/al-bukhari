@@ -40,10 +40,3 @@ flutter:
     - family: InstrumentSans
       fonts:
         - asset: assets/fonts/InstrumentSans.ttf
-
-# Temporary: only for the iOS walkthrough in the cloud build.
-dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  integration_test:
-    sdk: flutter

@@ -16,6 +16,8 @@ be re-checked before submission.
 This builds the release APK and installs it on the connected phone or
 emulator. Then walk through every tab and compare with `docs/screenshots/`
 and section 4. Also check once with the phone's text size set to large.
+For iOS, run the **iOS** workflow on GitHub and try the build on
+appetize.io or TestFlight (see README).
 
 `flutter analyze` must report no issues.
 
@@ -25,7 +27,7 @@ and section 4. Also check once with the phone's text size set to large.
 
 | # | Rule | Source | How we meet it |
 |---|------|--------|----------------|
-| A1 | Built with Xcode 26+ and the iOS 26 SDK; targets iOS 13+ | Upcoming requirements | Build on a Mac or cloud runner with Xcode 26 |
+| A1 | Built with Xcode 26+ and the iOS 26 SDK; targets iOS 13+ | Upcoming requirements | Built on GitHub's macOS runner (`.github/workflows/ios.yml`); targets iOS 15 |
 | A2 | Quotations of religious texts must be accurate, not misleading | 1.1.5 | Arabic text is shipped verbatim; the build script refuses a mismatched download; verse counts checked against the canon |
 | A3 | Final build: no placeholder text, dead links or crashes | 2.1(a) | No "coming soon" screens; robot and monkey tests |
 | A4 | Screenshots show the app in use, not a splash or title | 2.3.3 | Store screenshots are the reader, player, Qibla and prayer screens |
@@ -39,7 +41,7 @@ and section 4. Also check once with the phone's text size set to large.
 | A12 | Purpose strings clearly describe each use of data | 5.1.1(ii) | One string, for location |
 | A13 | Location used only where directly relevant, with consent | 5.1.5 | Asked only on the Qibla and Prayer screens |
 | A14 | Free app: any tip or donation must use in-app purchase | 3.1.1 | No payments of any kind |
-| A15 | Privacy manifest declares required-reason APIs *(unconfirmed)* | Upcoming requirements | `ios/Runner/PrivacyInfo.xcprivacy`; verify with Xcode's privacy report |
+| A15 | Privacy manifest declares required-reason APIs *(unconfirmed)* | Upcoming requirements | `ios/Runner/PrivacyInfo.xcprivacy`, included in the app target |
 | A16 | Screenshot pixel sizes *(unconfirmed)* | App Store Connect | Check the current sizes when uploading |
 
 ### Google Play

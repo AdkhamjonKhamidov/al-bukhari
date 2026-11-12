@@ -24,7 +24,8 @@ assets/                  Quran text (gzip), city list (gzip), fonts, icon,
                          privacy policy
 docs/                    Rulebook, priorities, reference screenshots
 tool/build_data.mjs      Rebuilds the bundled Quran text and city list
-deploy.ps1               Build / install / store bundle
+deploy.ps1               Android: build / install / store bundle
+../.github/workflows/ios.yml   iOS: cloud build on a GitHub Mac
 ```
 
 How data is kept small:
@@ -39,7 +40,7 @@ How data is kept small:
 
 ## Priorities
 
-**Built (first release, Android)**
+**Built (first release, Android; iOS builds and runs on the simulator)**
 1. Quran in Arabic, English and phonetic English; all 114 surahs offline.
 2. Repeat a verse, a range or a whole surah, 1/3/5/10 times or forever.
 3. Two reciters: Al-Husary (default), Alafasy.
@@ -59,7 +60,8 @@ How data is kept small:
 **Later**
 1. Dark theme for night reading.
 2. More reciters and translations (each needs its licence checked).
-3. iOS release (needs a Mac).
+3. iOS release: TestFlight upload from the cloud build (needs an Apple
+   Developer account).
 
 ## Owner tasks
 
@@ -70,3 +72,4 @@ How data is kept small:
 4. Confirm the bundle id (`com.albukhari.app`).
 5. Confirm the translation choice and its non-commercial terms.
 6. Try it on a real phone: compass accuracy, audio, GPS.
+7. Apple Developer account ($99/year) for TestFlight and the App Store.

@@ -1,7 +1,7 @@
 # Builds the iOS app on a GitHub-hosted Mac (no Mac needed locally).
-# Output: an iPhone-simulator build (zip) to try in the browser on
-# appetize.io. If a walkthrough is present in integration_test/, it also
-# runs it on a simulator and saves a screenshot of each screen.
+# Output: AlBukhari-ios-simulator.zip, an iPhone-simulator build that runs
+# in the browser on appetize.io. Runs on every push that changes the app,
+# or by hand from the Actions tab.
 name: iOS
 
 on:
@@ -40,22 +40,3 @@ jobs:
         with:
           name: AlBukhari-ios-simulator
           path: al_bukhari/AlBukhari-ios-simulator.zip
-
-      - name: Walk through the app on a simulator
-        if: hashFiles('al_bukhari/integration_test/*.dart') != ''
-        run: |
-          UDID=$(xcrun simctl list devices available -j | python3 -c "
-          import json, sys
-          d = json.load(sys.stdin)['devices']
-          print(next(x['udid'] for k, v in d.items() if 'iOS' in k for x in v if x['name'].startswith('iPhone')))")
-          xcrun simctl boot "$UDID"
-          xcrun simctl bootstatus "$UDID" -b
-          flutter drive --driver=test_driver/integration_test.dart \
-            --target=integration_test/walkthrough_test.dart -d "$UDID"
-
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: ios-screenshots
-          path: al_bukhari/screenshots
-          if-no-files-found: ignore
