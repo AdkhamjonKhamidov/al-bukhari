@@ -56,10 +56,10 @@ void main() {
     await wait(tester, 1);
     await shot(tester, '06_text_options');
     await tester.tapAt(const Offset(20, 120)); // close the sheet
-    await wait(tester, 1);
+    await wait(tester, 2);
 
     await tester.tap(find.byType(BackButton));
-    await waitFor(tester, find.text('Qibla'));
+    await wait(tester, 2); // iOS slides the page away more slowly
     await tester.tap(find.text('Qibla'));
     await waitFor(tester, find.text('Choose city'));
     await shot(tester, '07_qibla_needs_place');
