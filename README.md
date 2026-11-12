@@ -4,9 +4,10 @@ The Quran in Arabic, English and English phonetics, with verse, range and
 surah repeat for memorisation, a Qibla compass and Hanafi prayer times.
 No accounts, no ads, no tracking: everything is worked out on the phone.
 
-| Quran | Repeat | Qibla | Prayer |
-|---|---|---|---|
-| ![](docs/screenshots/1_quran.png) | ![](docs/screenshots/2_reader_repeat.png) | ![](docs/screenshots/4_qibla.png) | ![](docs/screenshots/5_prayer.png) |
+| | Quran | Repeat | Qibla | Prayer |
+|---|---|---|---|---|
+| Android | ![](docs/screenshots/android/quran.png) | ![](docs/screenshots/android/repeat.png) | ![](docs/screenshots/android/qibla.png) | ![](docs/screenshots/android/prayer.png) |
+| iPhone | ![](docs/screenshots/ios/quran.png) | ![](docs/screenshots/ios/repeat.png) | ![](docs/screenshots/ios/qibla.png) | ![](docs/screenshots/ios/prayer.png) |
 
 ## What it does
 
@@ -36,7 +37,7 @@ computer).
 
 1. Plug in an Android phone with **USB debugging** on, or start the emulator:
    Android Studio → Device Manager → ▶ on a device.
-2. Open PowerShell in this folder (`al_bukhari`) and run:
+2. Open PowerShell in this folder and run:
 
 ```powershell
 .\deploy.ps1 -Install
@@ -71,8 +72,8 @@ Builds the `.aab` bundle that Google Play asks for.
 - Translation and recitations are licensed for non-commercial use: the app
   must stay free with no ads.
 
-Full store, privacy and design rules: `docs/RULEBOOK.md`.
-Structure and what is next: `docs/PRIORITIES.md`.
+Full store, privacy and design rules: [docs/RULEBOOK.md](docs/RULEBOOK.md).
+Structure and what is next: [docs/PRIORITIES.md](docs/PRIORITIES.md).
 
 ## Change the bundled data
 
@@ -85,8 +86,7 @@ Rebuilds the Quran text and city list from their public sources.
 ## iOS (no Mac needed)
 
 The same code builds for iPhone on a GitHub-hosted Mac. It has been run
-end to end on the iPhone simulator; screenshots are in
-`docs/screenshots/ios/`.
+end to end on the iPhone simulator (screenshots above).
 
 **Get a build:** every push that changes the app builds it automatically.
 To build by hand: GitHub → **Actions** → **iOS** → **Run workflow**. When it

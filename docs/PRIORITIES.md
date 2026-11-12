@@ -20,12 +20,14 @@ lib/
     prayer/              Today's times and sun path
     places/              "Set your place" screen and the place picker
     more/                Settings, sources, privacy policy
-assets/                  Quran text (gzip), city list (gzip), fonts, icon,
+assets/                  Quran text (gzip), city list (gzip), fonts,
                          privacy policy
-docs/                    Rulebook, priorities, reference screenshots
+docs/                    Rulebook, priorities, screenshots
 tool/build_data.mjs      Rebuilds the bundled Quran text and city list
 deploy.ps1               Android: build / install / store bundle
-../.github/workflows/ios.yml   iOS: cloud build on a GitHub Mac
+android/, ios/           Platform projects (icons, permissions, privacy manifest)
+rust_builder/            Glue that builds the Rust core for Flutter
+.github/workflows/ios.yml   iOS: cloud build on a GitHub Mac
 ```
 
 How data is kept small:

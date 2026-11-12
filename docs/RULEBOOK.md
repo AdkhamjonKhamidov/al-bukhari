@@ -1,7 +1,7 @@
 # Al Bukhari rulebook
 
 Every change is checked against this file, on a device, before it counts as
-done. Reference screenshots are in `docs/screenshots/`.
+done. Reference screenshots are in `docs/screenshots/` (Android and iOS).
 
 Store rules were read from Apple's and Google's own pages on 2026-11-10. Items
 marked *(unconfirmed)* could not be read from an official page that day and must

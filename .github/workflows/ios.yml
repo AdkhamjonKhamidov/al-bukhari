@@ -1,21 +1,18 @@
 # Builds the iOS app on a GitHub-hosted Mac (no Mac needed locally).
 # Output: AlBukhari-ios-simulator.zip, an iPhone-simulator build that runs
-# in the browser on appetize.io. Runs on every push that changes the app,
+# in the browser on appetize.io. Runs on every push that changes the code,
 # or by hand from the Actions tab.
 name: iOS
 
 on:
   push:
-    paths: ['al_bukhari/**', '.github/workflows/ios.yml']
+    paths-ignore: ['**.md', 'docs/**']
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: macos-15
     timeout-minutes: 75
-    defaults:
-      run:
-        working-directory: al_bukhari
     steps:
       - uses: actions/checkout@v4
 
@@ -39,4 +36,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: AlBukhari-ios-simulator
-          path: al_bukhari/AlBukhari-ios-simulator.zip
+          path: AlBukhari-ios-simulator.zip
